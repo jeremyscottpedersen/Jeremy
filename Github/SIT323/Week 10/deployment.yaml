@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mynodeapp-deployment
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: mynodeapp
+  template:
+    metadata:
+      labels:
+        app: mynodeapp
+    spec:
+      containers:
+      - name: mynodeapp
+        image: gcr.io/task10-422900/mynodeapp:latest  # Ensure this is correct
+        ports:
+        - containerPort: 3000
+      imagePullSecrets:
+      - name: gcr-json-key
